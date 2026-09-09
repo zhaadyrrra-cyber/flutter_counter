@@ -1,4 +1,4 @@
-name: Deploy Flutter Web
+лname: Deploy Flutter Web
 
 on:
   push:
@@ -15,23 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
-flutter-version: "3.47.2          flutter-version: "3.35.0"
+          flutter-version: "3.47.2"
           channel: stable
 
-      - name: Install dependencies
-        run: flutter pub get
+      - run: flutter pub get
 
-      - name: Build web
-        run: flutter build web --release --base-href "/flutter_counter/"
+      - run: flutter build web --release --base-href "/flutter_counter/"
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
@@ -47,3 +42,4 @@ flutter-version: "3.47.2          flutter-version: "3.35.0"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
